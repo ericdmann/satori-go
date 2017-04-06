@@ -19,7 +19,7 @@ Publisher and subscription examples are located inside of `/examples`
 	RTMAppKey     		//	See satori documentation for app key
 	RTMRoleName   		//	See satori documentation for role name
 	RTMRoleSecret 		//	See satori documentation for role secret
-	Debug				//	Triggers logging on each RTM action
+	Debug			//	Triggers logging on each RTM action
 
 
 ### Publish to a channel
