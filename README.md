@@ -6,6 +6,9 @@ Sign up/sign in here: https://developer.satori.com/#/
 
 ## Setup/Usage
 
+```go
+	go get github.com/ericdmann/satori-go
+```
 Publisher and subscription examples are located inside of `/examples`
 
 ### Create a client
