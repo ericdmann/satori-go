@@ -27,7 +27,7 @@ func (r *RTMClient) Connect() error {
 		Body: RTMWireBody{
 			Method: "role_secret",
 			Data: RTMWireBodyData{
-				Role: "Test",
+				Role: r.RoleName,
 			},
 		},
 	}
