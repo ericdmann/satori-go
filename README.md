@@ -26,14 +26,14 @@ Publisher and subscription examples are located inside of `/examples`
 
 
 ### Publish to a channel
-Once a client has been created, publishing to a channel is quite simple. 
+Once a client has been created, publishing to a channel is quite simple.
 
 ```go
 	rtWire, err := rtmClient.Publish(channel, time.Now().String())
 ```
 
 ### Subscribe to a channel
-Each client can subscribe to exacly one channel at a time. Subscriptions can be changed without reconnecting. 
+Each client can subscribe to exacly one channel at a time. Subscriptions can be changed without reconnecting.
 
 ```go
 	err = rtmClient.Subscribe(channel)
@@ -83,3 +83,4 @@ ok	1.942s
 
 ## TODO
 
+1. Auto reconnect (currently will need refreshed)
