@@ -6,14 +6,20 @@ import (
 	"fmt"
 )
 
-//	Publishes a message to a specific RTM channel
-func (r *RTMClient) Publish(channel string, message string) (RTMWire, error) {
+// Publish will publish a message to a specific RTM channel
+func (r *RTMClient) Publish(channel string, message interface{}) (RTMWire, error) {
 	var rtmResponse RTMWire
+
+	rawMessage, err := r.ConvertToRawMessage(message)
+	if err != nil {
+		return rtmResponse, err
+	}
+
 	wire := RTMWire{
 		Action: "rtm/publish",
 		Body: RTMWireBody{
 			Channel: channel,
-			Message: message,
+			Message: rawMessage,
 		},
 	}
 
@@ -21,6 +27,11 @@ func (r *RTMClient) Publish(channel string, message string) (RTMWire, error) {
 	if err != nil {
 		return rtmResponse, err
 	}
+
+	if r.Debug {
+		fmt.Printf("(Publish) Raw Message: %s\n", string(jsonStr))
+	}
+
 	r.WSClient.Write(jsonStr)
 	retMsg := make([]byte, 512)
 	n, err := r.WSClient.Read(retMsg)
@@ -35,7 +46,7 @@ func (r *RTMClient) Publish(channel string, message string) (RTMWire, error) {
 	return rtmResponse, err
 }
 
-//	Subscribes the r.WSClient to the provided RTM channel
+// Subscribe connects to the r.WSClient to the provided RTM channel for subscription events
 func (r *RTMClient) Subscribe(channel string) error {
 
 	wire := RTMWire{
@@ -61,14 +72,14 @@ func (r *RTMClient) Subscribe(channel string) error {
 	return err
 }
 
-//	Cancels the active subscription
+// CancelSubscription will cancel the active subscription
 func (r *RTMClient) CancelSubscription() {
 	subscriptionMutex.Lock()
 	defer subscriptionMutex.Unlock()
 	r.SubscriptionName = ""
 }
 
-//	Reads the stream provided by r.WSClient if subscribed
+// ReadSubscription reads from the stream provided by r.WSClient if subscribed
 func (r *RTMClient) ReadSubscription() error {
 	for {
 		//	Validate this subscription hasn't been cancelled

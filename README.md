@@ -64,7 +64,13 @@ Publisher and subscription examples are located inside of `/examples`
 ```
 
 ###	Testing
-Update `rtm_test.go` with your Satori account info, then just use `go test --cover`
+Export all the necessary Satori fields into your environment by using the `export` built-in:
+
+```
+$ export SATORI_APP_KEY=<YOUR_SATORI_APP_KEY>
+```
+
+You can then just use `go test --cover`
 
 ```go
 PASS

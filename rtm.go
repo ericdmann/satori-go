@@ -4,6 +4,7 @@ import (
 	"crypto/hmac"
 	"crypto/md5"
 	"encoding/base64"
+	"encoding/json"
 	"errors"
 	"strings"
 	"sync"
@@ -30,13 +31,13 @@ type RTMWireBody struct {
 	Data           RTMWireBodyData        `json:"data,omitempty"`
 	Method         string                 `json:"method,omitempty"`
 	Channel        string                 `json:"channel,omitempty"`
-	Message        string                 `json:"message,omitempty"`
+	Message        json.RawMessage        `json:"message,omitempty"`
 	Prefix         string                 `json:"prefix,omitempty"`
 	SubscriptionID string                 `json:"subscription_id,omitempty"`
 	Error          string                 `json:"error,omitempty"`
 	Reason         string                 `json:"reason,omitempty"`
 	Position       string                 `json:"position,omitempty"`
-	Messages       []string               `json:"messages,omitempty"`
+	Messages       []json.RawMessage      `json:"messages,omitempty"`
 }
 
 type RTMWireBodyCredentials struct {
