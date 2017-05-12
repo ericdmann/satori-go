@@ -11,7 +11,7 @@ import (
 func (r *RTMClient) Connect() error {
 	var err error
 
-	config, err := websocket.NewConfig(r.Endpoint+"/"+RTMVersion+"?appkey="+r.AppKey, "https://satori.com")
+	config, err := websocket.NewConfig(r.Endpoint+"/"+RTMVersion+"?appkey="+r.AppKey, "http://localhost")
 	if err != nil {
 		return err
 	}
