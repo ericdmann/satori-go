@@ -26,17 +26,17 @@ type RTMWire struct {
 }
 
 type RTMWireBody struct {
-	Credentials    RTMWireBodyCredentials `json:"credentials,omitempty"`
-	Data           RTMWireBodyData        `json:"data,omitempty"`
-	Method         string                 `json:"method,omitempty"`
-	Channel        string                 `json:"channel,omitempty"`
-	Message        string                 `json:"message,omitempty"`
-	Prefix         string                 `json:"prefix,omitempty"`
-	SubscriptionID string                 `json:"subscription_id,omitempty"`
-	Error          string                 `json:"error,omitempty"`
-	Reason         string                 `json:"reason,omitempty"`
-	Position       string                 `json:"position,omitempty"`
-	Messages       []string               `json:"messages,omitempty"`
+	Credentials    RTMWireBodyCredentials   `json:"credentials,omitempty"`
+	Data           RTMWireBodyData          `json:"data,omitempty"`
+	Method         string                   `json:"method,omitempty"`
+	Channel        string                   `json:"channel,omitempty"`
+	Message        map[string]interface{}   `json:"message,omitempty"`
+	Prefix         string                   `json:"prefix,omitempty"`
+	SubscriptionID string                   `json:"subscription_id,omitempty"`
+	Error          string                   `json:"error,omitempty"`
+	Reason         string                   `json:"reason,omitempty"`
+	Position       string                   `json:"position,omitempty"`
+	Messages       []map[string]interface{} `json:"messages,omitempty"`
 }
 
 type RTMWireBodyCredentials struct {

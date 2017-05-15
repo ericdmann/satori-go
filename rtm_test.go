@@ -7,11 +7,11 @@ import (
 )
 
 const (
-	channel       = "<ChannelName>"
-	RTMEndpoint   = "<RTMEndpoint>"
-	RTMAppKey     = "<RTMAppKey>"
-	RTMRoleName   = "<RTMRoleName>"
-	RTMRoleSecret = "<RTMRoleSecret>"
+	channel       = "[your_info]"
+	RTMEndpoint   = "[your_info]"
+	RTMAppKey     = "[your_info]"
+	RTMRoleName   = "[your_info]"
+	RTMRoleSecret = "[your_info]"
 )
 
 func TestClientPublish(t *testing.T) {
@@ -23,7 +23,7 @@ func TestClientPublish(t *testing.T) {
 	}
 
 	timeInABottle := time.Now().String()
-	rtWire, err := rtmClient.Publish(channel, timeInABottle)
+	rtWire, err := rtmClient.Publish(channel, map[string]interface{}{"time": timeInABottle})
 
 	if rtWire.Action != "rtm/publish/ok" {
 		t.Fatalf("Unsuccessful publish: %s", rtWire.Action)
@@ -77,7 +77,7 @@ func TestClientReadSubscriptionChannel(t *testing.T) {
 
 	go rReadClient.ReadSubscription()
 
-	rtWire, err := rPublishClient.Publish(channel, time.Now().String())
+	rtWire, err := rPublishClient.Publish(channel, map[string]interface{}{"time": time.Now().String()})
 	if err != nil || rtWire.Action != "rtm/publish/ok" {
 		t.Fatalf("Error publishing: %s", rtWire.Action)
 	}

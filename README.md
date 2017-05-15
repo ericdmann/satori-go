@@ -29,7 +29,7 @@ Publisher and subscription examples are located inside of `/examples`
 Once a client has been created, publishing to a channel is quite simple.
 
 ```go
-	rtWire, err := rtmClient.Publish(channel, time.Now().String())
+	rtWire, err := rtmClient.Publish(channel, map[string]interface{}{"time": time.Now().String()})
 ```
 
 ### Subscribe to a channel

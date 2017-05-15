@@ -7,7 +7,7 @@ import (
 )
 
 //	Publishes a message to a specific RTM channel
-func (r *RTMClient) Publish(channel string, message string) (RTMWire, error) {
+func (r *RTMClient) Publish(channel string, message map[string]interface{}) (RTMWire, error) {
 	var rtmResponse RTMWire
 	wire := RTMWire{
 		Action: "rtm/publish",
