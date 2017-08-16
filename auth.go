@@ -7,11 +7,11 @@ import (
 	"golang.org/x/net/websocket"
 )
 
-//	Completes the handshake and authentication via role_secret to the RTM endpoint
+// Connect completes the handshake and authentication via role_secret to the RTM endpoint
 func (r *RTMClient) Connect() error {
 	var err error
 
-	config, err := websocket.NewConfig(r.Endpoint+"/"+RTMVersion+"?appkey="+r.AppKey, "http://ericmann.net")
+	config, err := websocket.NewConfig(r.Endpoint+"/"+RTMVersion+"?appkey="+r.AppKey, "http://localhost")
 	if err != nil {
 		return err
 	}
