@@ -50,7 +50,7 @@ func sendMessages(rClient rtm.RTMClient, channel string) {
 
 	for range ticker.C {
 
-		rtWire, err := rClient.Publish(channel, time.Now().String())
+		rtWire, err := rClient.Publish(channel, map[string]interface{}{"time": time.Now().String()})
 		if err != nil {
 			fmt.Println("Error publishing message: ", err)
 			continue

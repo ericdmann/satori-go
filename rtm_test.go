@@ -55,6 +55,7 @@ func TestClientPublish(t *testing.T) {
 	}
 	rtWire, err := rtmClient.Publish(channel, msgStruct)
 
+
 	if rtWire.Action != "rtm/publish/ok" {
 		t.Fatalf("Unsuccessful publish: %s", rtWire.Action)
 	} else if err != nil {
@@ -113,7 +114,7 @@ func TestClientReadSubscriptionChannel(t *testing.T) {
 
 	go rReadClient.ReadSubscription()
 
-	rtWire, err := rPublishClient.Publish(channel, time.Now().String())
+	rtWire, err := rPublishClient.Publish(channel, map[string]interface{}{"time": time.Now().String()})
 	if err != nil || rtWire.Action != "rtm/publish/ok" {
 		t.Fatalf("Error publishing: %s", rtWire.Action)
 	}

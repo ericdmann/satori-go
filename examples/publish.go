@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/ericdmann/satori-go"
 	"time"
+
+	"github.com/ericdmann/satori-go"
 )
 
 const (
@@ -27,7 +28,7 @@ func main() {
 
 	for range ticker.C {
 
-		rtmWire, err := rClient.Publish("test", "hi")
+		rtmWire, err := rClient.Publish("test", map[string]interface{}{"message": "hi"})
 		if err != nil {
 			fmt.Println("Error publishing message: ", err)
 			return

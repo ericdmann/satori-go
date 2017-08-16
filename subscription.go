@@ -8,6 +8,7 @@ import (
 
 // Publish will publish a message to a specific RTM channel
 func (r *RTMClient) Publish(channel string, message interface{}) (RTMWire, error) {
+
 	var rtmResponse RTMWire
 
 	rawMessage, err := r.ConvertToRawMessage(message)
